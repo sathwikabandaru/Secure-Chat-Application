@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Chat App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Secure Chat Application</h1>
+    
+    <form method="POST" class="chat-form">
+      <label for="message">Your Message:</label>
+      <textarea name="message" id="message" required placeholder="Type your message..."></textarea>
+
+      <label for="method">Encryption Type:</label>
+      <select name="method" id="method">
+        <option value="RSA">RSA</option>
+        <option value="AES">AES</option>
+      </select>
+
+      <button type="submit">Encrypt & Decrypt</button>
+    </form>
+
+    {% if original %}
+      <div class="result-section">
+        <h2>🔍 Results</h2>
+
+        <div class="result-box">
+          <strong>Original Message:</strong>
+          <p>{{ original }}</p>
+        </div>
+
+        <div class="result-box">
+          <strong>Encrypted Message ({{ method }}):</strong>
+          <p class="encrypted">{{ encrypted }}</p>
+        </div>
+
+        <div class="result-box">
+          <strong>Decrypted Message:</strong>
+          <p class="decrypted">{{ decrypted }}</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
